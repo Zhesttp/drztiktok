@@ -3,804 +3,342 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="theme-color" content="#080810">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>DRAZZE | Onboarding Guide</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <title>Стань частью системы | Заработок на трафике</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="cosmic-bg"></div>
-    <div class="planet planet-1"></div>
-    <div class="planet planet-2"></div>
-    <div class="space-dust" id="spaceDust"></div>
-    <div class="grid-effect"></div>
-
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loading-overlay"></div>
-        <div class="loading-content">
-            <div class="loading-logo">
-                <img src="assets/images/logo-white.png" alt="DRAZZE" class="logo-image">
+    <!-- Загрузочная страница -->
+    <div id="loader" class="loader">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <img src="img/logo-white.png" alt="Drazze" class="logo-image">
             </div>
-            <div class="loading-progress">
-                <div class="progress-container">
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="progressFill"></div>
-                    </div>
-                    <div class="progress-text">
-                        <span id="progressPercent">0</span>%
-                    </div>
-                </div>
-                <div class="loading-text">
-                    <span class="loading-dots"></span>
-                    <span class="loading-message">Загрузка платформы</span>
-                </div>
+            <div class="loader-progress">
+                <div class="progress-bar"></div>
             </div>
+            <p class="loader-text">Загрузка возможностей...</p>
         </div>
     </div>
 
-    <!-- Welcome Screen -->
-    <div class="welcome-screen" id="welcomeScreen">
-        <div class="welcome-content">
-            <div class="welcome-logo">
-                <img src="assets/images/logo-white.png" alt="DRAZZE" class="logo-image">
-            </div>
-                <div class="welcome-text">
-                    <h1 class="glitch-text" data-text="СТАНЬ ЧАСТЬЮ СИСТЕМЫ">СТАНЬ ЧАСТЬЮ СИСТЕМЫ</h1>
-                    <div class="welcome-subtitle">
-                        <span class="gradient-text">Заработок на коротких видео</span>
-                    </div>
-                    <p class="welcome-description">
-                        Мануал по заработку на коротких видеороликах (TikTok, YouTube Shorts, Instagram Reels)
-                        с использованием iGaming-платформы Drazze и вашей реферальной ссылки.
-                    </p>
-                </div>
-            <button class="btn-start-pulse" id="startBtn">
-                <span class="btn-text">НАЧАТЬ ПУТЬ</span>
-                <div class="btn-glow"></div>
-                <div class="btn-pulse"></div>
+    <!-- Стартовая страница -->
+    <div id="start-page" class="start-page hidden">
+        <div class="start-background">
+        </div>
+        <div class="start-content">
+            <h1 class="start-title">
+                <span class="title-line">Стань частью</span>
+                <span class="title-line highlight">системы</span>
+            </h1>
+            <p class="start-subtitle">Как начать зарабатывать на коротких видео и постах с помощью рефералов </p>
+            <p class="start-platforms">TikTok • YouTube Shorts • Instagram Reels • Threads</p>
+            <button class="start-button pulse" id="startLearningBtn">
+                <span>Начать</span>
+                <svg class="arrow-icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
             </button>
-            <div class="welcome-stats">
-                <div class="stat">
-                    <div class="stat-number">9</div>
-                    <div class="stat-label">Слайдов</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">3</div>
-                    <div class="stat-label">Платформы</div>
-                </div>
-            </div>
         </div>
     </div>
 
-    <!-- Main App -->
-    <div class="app-container" id="appContainer">
-        <!-- Header -->
-        <header class="app-header">
-            <div class="header-left">
-                <button class="btn-back" id="backBtn">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <div class="stage-indicator">
-                    <span class="stage-prefix">СЛАЙД</span>
-                    <span class="stage-number" id="currentStageNum">1</span>
-                    <span class="stage-slash">/</span>
-                    <span class="stage-total">9</span>
-                </div>
+    <!-- Интерактивное обучение -->
+    <div id="learning" class="learning hidden">
+        <!-- Прогресс бар -->
+        <div class="progress-container">
+            <div class="progress-line">
+                <div class="progress-fill" id="progressFill"></div>
             </div>
-            <div class="header-right">
-                <div class="progress-dots">
-                    <div class="dot active" data-stage="1"></div>
-                    <div class="dot" data-stage="2"></div>
-                    <div class="dot" data-stage="3"></div>
-                    <div class="dot" data-stage="4"></div>
-                    <div class="dot" data-stage="5"></div>
-                    <div class="dot" data-stage="6"></div>
-                    <div class="dot" data-stage="7"></div>
-                    <div class="dot" data-stage="8"></div>
-                    <div class="dot" data-stage="9"></div>
-                </div>
+            <div class="progress-text">
+                <span id="currentStep">1</span> / <span id="totalSteps">5</span>
             </div>
-        </header>
+        </div>
 
-        <!-- Main Content -->
-        <main class="app-main">
-            <!-- Stage 1: Введение -->
-            <div class="stage-screen active" id="stage1-main">
-                <div class="stage-header">
-                    <div class="stage-badge">ВВЕДЕНИЕ</div>
-                    <h2 class="stage-title">Стань частью системы</h2>
-                    <p class="stage-description">
-                        Понятная и масштабируемая модель заработка на коротком контенте. 
-                        Создавайте видео в TikTok, YouTube Shorts, Instagram Reels и направляйте трафик 
-                        на iGaming-платформу Drazze через личную реферальную ссылку.
+        <!-- Слайды обучения -->
+        <div class="slides-container">
+            <!-- Слайд 1: Введение -->
+            <div class="slide active" data-slide="1">
+                <div class="slide-content">
+                    <div class="slide-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <circle cx="12" cy="12" r="6"/>
+                            <circle cx="12" cy="12" r="2"/>
+                        </svg>
+                    </div>
+                    <h2 class="slide-title">Добро пожаловать!</h2>
+                    <p class="slide-text">
+                        Ты узнаешь, как начать зарабатывать на коротких видео всего за несколько минут.
+                        Система проверена нашими креативщиками и приносит реальный доход.
                     </p>
-                </div>
-                
-                <div class="content-grid">
-                    <div class="lesson-card" data-lesson="1">
-                        <div class="lesson-icon text">
-                            <i class="fas fa-play-circle"></i>
-                        </div>
-                        <div class="lesson-content">
-                            <div class="lesson-number">01</div>
-                            <h3>Что такое система</h3>
-                            <p class="lesson-subtitle">Модель заработка на коротких видео</p>
-                        </div>
-                        <div class="lesson-action">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </div>
-
-                    <div class="lesson-card" data-lesson="2">
-                        <div class="lesson-icon text">
-                            <i class="fas fa-share-alt"></i>
-                        </div>
-                        <div class="lesson-content">
-                            <div class="lesson-number">02</div>
-                            <h3>Реферальная ссылка</h3>
-                            <p class="lesson-subtitle">Ваш главный инструмент заработка</p>
-                        </div>
-                        <div class="lesson-action">
-                            <i class="fas fa-chevron-right"></i>
+                    <div class="slide-highlight">
+                        <div class="highlight-item">
+                            <span class="highlight-number" data-target="1000">0</span>
+                            <span class="highlight-label">$ в месяц</span>
                         </div>
                     </div>
                 </div>
-
-                <button class="btn-next-stage" id="nextStage1">
-                    <span>Как начать</span>
-                    <i class="fas fa-arrow-right"></i>
-                    <div class="btn-shine"></div>
-                </button>
             </div>
 
-            <!-- Stage 2: Как начать -->
-            <div class="stage-screen" id="stage2-main">
-                <div class="stage-header">
-                    <div class="stage-badge">СТАРТ</div>
-                    <h2 class="stage-title">Как начать</h2>
-                    <p class="stage-description">
-                        Если вы приняли решение начать — это самый важный шаг. 
-                        Зарегистрируйтесь на платформе Drazze, оформите аккаунт и выберите соцсети для работы.
-                    </p>
-                </div>
-                
-                <div class="content-grid">
-                    <div class="lesson-card" data-lesson="1">
-                        <div class="lesson-icon text">
-                            <i class="fas fa-user-plus"></i>
+            <!-- Слайд 2: Как начать -->
+            <div class="slide" data-slide="2">
+                <div class="slide-content">
+                    <div class="slide-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+                            <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+                            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+                            <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+                            <path d="M15 11.5V9"/>
+                            <path d="M17 8a1 1 0 1 0 2 0 1 1 0 1 0-2 0"/>
+                        </svg>
+                    </div>
+                    <h2 class="slide-title">Как начать</h2>
+                    <div class="steps-list">
+                        <div class="step-item" data-step="1">
+                            <div class="step-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <text x="12" y="16" text-anchor="middle" fill="white" font-size="14" font-weight="bold">1</text>
+                                </svg>
+                            </div>
+                            <div class="step-info">
+                                <h3>Старт</h3>
+                                <p>Пройди краткое вступление и получи доступ к материалам</p>
+                            </div>
                         </div>
-                        <div class="lesson-content">
-                            <div class="lesson-number">01</div>
-                            <h3>Регистрация на Drazze</h3>
-                            <p class="lesson-subtitle">Оформление аккаунта и реферальной ссылки</p>
+                        <div class="step-item" data-step="2">
+                            <div class="step-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <text x="12" y="16" text-anchor="middle" fill="white" font-size="14" font-weight="bold">2</text>
+                                </svg>
+                            </div>
+                            <div class="step-info">
+                                <h3>Изучи материалы</h3>
+                                <p>Пошаговая инструкция за 20 минут обучения</p>
+                            </div>
                         </div>
-                        <div class="lesson-action">
-                            <i class="fas fa-chevron-right"></i>
+                        <div class="step-item" data-step="3">
+                            <div class="step-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <text x="12" y="16" text-anchor="middle" fill="white" font-size="14" font-weight="bold">3</text>
+                                </svg>
+                            </div>
+                            <div class="step-info">
+                                <h3>Создай первый контент</h3>
+                                <p>Используй свои идеи или готовые шаблоны и начни зарабатывать</p>
+                            </div>
+                        </div>
+                        <div class="step-item highlight-step" data-step="4">
+                            <div class="step-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.91s4.18 1.39 4.18 3.91c-.01 1.83-1.38 2.83-3.12 3.16z"/>
+                                </svg>
+                            </div>
+                            <div class="step-info">
+                                <h3>Получай доход</h3>
+                                <p>Деньги за каждого приведенного вами реферала</p>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="lesson-card" data-lesson="2">
-                        <div class="lesson-icon text">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <div class="lesson-content">
-                            <div class="lesson-number">02</div>
-                            <h3>Выбор соцсетей</h3>
-                            <p class="lesson-subtitle">TikTok, YouTube Shorts, Instagram Reels</p>
-                        </div>
-                        <div class="lesson-action">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </div>
                 </div>
-
-                <button class="btn-next-stage" id="nextStage2">
-                    <span>Как формируется доход</span>
-                    <i class="fas fa-arrow-right"></i>
-                    <div class="btn-shine"></div>
-                </button>
             </div>
 
-            <!-- Stage 3: Как формируется доход -->
-            <div class="stage-screen" id="stage3-main">
-                <div class="stage-header">
-                    <div class="stage-badge">ДОХОД</div>
-                    <h2 class="stage-title">Как формируется ваш доход</h2>
-                    <p class="stage-description">
-                        На платформе Drazze вы получаете уникальную реферальную ссылку — это ваш главный инструмент. 
-                        Все пользователи, которые переходят по ней, автоматически закрепляются за вами. 
-                        Вы получаете процент с их активности на платформе.
-                    </p>
-                </div>
-                
-                <div class="content-grid">
-                    <div class="lesson-card" data-lesson="1">
-                        <div class="lesson-icon text">
-                            <i class="fas fa-link"></i>
-                        </div>
-                        <div class="lesson-content">
-                            <div class="lesson-number">01</div>
-                            <h3>Реферальная ссылка</h3>
-                            <p class="lesson-subtitle">Ваш главный инструмент заработка</p>
-                        </div>
-                        <div class="lesson-action">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
+            <!-- Слайд 3: Платформы -->
+            <div class="slide" data-slide="3">
+                <div class="slide-content">
+                    <div class="slide-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                            <line x1="12" y1="18" x2="12" y2="18"/>
+                        </svg>
                     </div>
-
-                    <div class="lesson-card" data-lesson="2">
-                        <div class="lesson-icon text">
-                            <i class="fas fa-users"></i>
+                    <h2 class="slide-title">Где публиковать</h2>
+                    <p class="slide-text">Выбери платформу, которая тебе ближе:</p>
+                    <div class="platforms-grid">
+                        <div class="platform-card" data-platform="tiktok">
+                            <div class="platform-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+                                </svg>
+                            </div>
+                            <h3>TikTok</h3>
+                            <p>Самая быстрая аудитория</p>
                         </div>
-                        <div class="lesson-content">
-                            <div class="lesson-number">02</div>
-                            <h3>Автоматическое закрепление</h3>
-                            <p class="lesson-subtitle">Пользователи становятся вашими рефералами</p>
-                        </div>
-                        <div class="lesson-action">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </div>
-
-                    <div class="lesson-card" data-lesson="3">
-                        <div class="lesson-icon text">
-                            <i class="fas fa-percent"></i>
-                        </div>
-                        <div class="lesson-content">
-                            <div class="lesson-number">03</div>
-                            <h3>Процент с активности</h3>
-                            <p class="lesson-subtitle">Чем больше качественного трафика — тем выше доход</p>
-                        </div>
-                        <div class="lesson-action">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="btn-next-stage" id="nextStage3">
-                    <span>Инструкция для TikTok</span>
-                    <i class="fas fa-arrow-right"></i>
-                    <div class="btn-shine"></div>
-                </button>
-            </div>
-
-            <!-- Stage 4: Инструкция для TikTok -->
-            <div class="stage-screen" id="stage4-main">
-                <div class="stage-header">
-                    <div class="stage-badge">TIKTOK</div>
-                    <h2 class="stage-title">Инструкция для TikTok</h2>
-                    <p class="stage-description">
-                        Если вы находитесь в РФ, для корректной работы TikTok необходимо установить VPN, 
-                        очистить кэш и создать новый аккаунт. После этого добавьте реферальную ссылку 
-                        в описание профиля и начинайте публиковать видео.
-                    </p>
-                </div>
-                
-                <div class="content-grid">
-                    <div class="lesson-card" data-lesson="1">
-                        <div class="lesson-icon text">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <div class="lesson-content">
-                            <div class="lesson-number">01</div>
-                            <h3>Установка VPN</h3>
-                            <p class="lesson-subtitle">Использование VPN Drazze или стабильного сервиса</p>
-                        </div>
-                        <div class="lesson-action">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </div>
-
-                    <div class="lesson-card" data-lesson="2">
-                        <div class="lesson-icon text">
-                            <i class="fas fa-broom"></i>
-                        </div>
-                        <div class="lesson-content">
-                            <div class="lesson-number">02</div>
-                            <h3>Очистка кэша TikTok</h3>
-                            <p class="lesson-subtitle">Как очистить кэш на Android и iPhone</p>
-                        </div>
-                        <div class="lesson-action">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </div>
-
-                    <div class="lesson-card" data-lesson="3">
-                        <div class="lesson-icon text">
-                            <i class="fas fa-user-plus"></i>
-                        </div>
-                        <div class="lesson-content">
-                            <div class="lesson-number">03</div>
-                            <h3>Создание нового аккаунта</h3>
-                            <p class="lesson-subtitle">Регистрация с новым email или номером</p>
-                        </div>
-                        <div class="lesson-action">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </div>
-
-                    <div class="lesson-card" data-lesson="4">
-                        <div class="lesson-icon text">
-                            <i class="fas fa-video"></i>
-                        </div>
-                        <div class="lesson-content">
-                            <div class="lesson-number">04</div>
-                            <h3>Контент-стратегия</h3>
-                            <p class="lesson-subtitle">Юмор, реакции, тренды, провокационные ролики</p>
-                        </div>
-                        <div class="lesson-action">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="btn-next-stage" id="nextStage4">
-                    <span>Instagram Reels и YouTube Shorts</span>
-                    <i class="fas fa-arrow-right"></i>
-                    <div class="btn-shine"></div>
-                </button>
-            </div>
-
-            <!-- Stage 5: Instagram Reels и YouTube Shorts -->
-            <div class="stage-screen" id="stage5-main">
-                <div class="stage-header">
-                    <div class="stage-badge">СОЦСЕТИ</div>
-                    <h2 class="stage-title">Instagram Reels и YouTube Shorts</h2>
-                    <p class="stage-description">
-                        Риторика и стратегия аналогичны TikTok. Зарегистрируйте аккаунт, 
-                        добавьте реферальную ссылку в описание профиля и регулярно публикуйте короткие видео.
-                    </p>
-                </div>
-                
-                <div class="content-grid">
-                    <div class="lesson-card" data-lesson="1">
-                        <div class="lesson-icon text">
-                            <i class="fab fa-instagram"></i>
-                        </div>
-                        <div class="lesson-content">
-                            <div class="lesson-number">01</div>
-                            <h3>Instagram Reels</h3>
-                            <p class="lesson-subtitle">Работает на платёжеспособную аудиторию</p>
-                        </div>
-                        <div class="lesson-action">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </div>
-
-                    <div class="lesson-card" data-lesson="2">
-                        <div class="lesson-icon text">
-                            <i class="fab fa-youtube"></i>
-                        </div>
-                        <div class="lesson-content">
-                            <div class="lesson-number">02</div>
+                        <div class="platform-card" data-platform="youtube">
+                            <div class="platform-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                </svg>
+                            </div>
                             <h3>YouTube Shorts</h3>
-                            <p class="lesson-subtitle">Особенно хорошо работает на долгую дистанцию</p>
+                            <p>Более возрастная аудитория</p>
                         </div>
-                        <div class="lesson-action">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="btn-next-stage" id="nextStage5">
-                    <span>TikTok — инструкции и примеры</span>
-                    <i class="fas fa-arrow-right"></i>
-                    <div class="btn-shine"></div>
-                </button>
-            </div>
-
-            <!-- Stage 6: TikTok — инструкции и примеры -->
-            <div class="stage-screen" id="stage6-main">
-                <div class="stage-header">
-                    <div class="stage-badge">TIKTOK</div>
-                    <h2 class="stage-title">TikTok — инструкции и примеры</h2>
-                    <p class="stage-description">
-                        Длина видео: 7–20 секунд. Первые 2 секунды — максимальный хук. 
-                        Минимум текста, максимум эмоций. Простой и понятный посыл.
-                    </p>
-                </div>
-                
-                <div class="content-grid">
-                    <div class="lesson-card" data-lesson="1">
-                        <div class="lesson-icon text">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="lesson-content">
-                            <div class="lesson-number">01</div>
-                            <h3>Формат видео</h3>
-                            <p class="lesson-subtitle">7–20 секунд, первые 2 секунды — хук</p>
-                        </div>
-                        <div class="lesson-action">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </div>
-
-                    <div class="lesson-card" data-lesson="2">
-                        <div class="lesson-icon text">
-                            <i class="fas fa-lightbulb"></i>
-                        </div>
-                        <div class="lesson-content">
-                            <div class="lesson-number">02</div>
-                            <h3>Примеры форматов</h3>
-                            <p class="lesson-subtitle">"Проверяю, реально ли это работает" и другие</p>
-                        </div>
-                        <div class="lesson-action">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="btn-next-stage" id="nextStage6">
-                    <span>Instagram — инструкции и примеры</span>
-                    <i class="fas fa-arrow-right"></i>
-                    <div class="btn-shine"></div>
-                </button>
-            </div>
-
-            <!-- Stage 7: Instagram — инструкции и примеры -->
-            <div class="stage-screen" id="stage7-main">
-                <div class="stage-header">
-                    <div class="stage-badge">INSTAGRAM</div>
-                    <h2 class="stage-title">Instagram — инструкции и примеры</h2>
-                    <p class="stage-description">
-                        Используйте Reels + Stories. Закрепляйте видео в профиле. 
-                        Добавляйте призыв к действию (CTA): "Ссылка в профиле", "Проверь сам", "Попробуй, пока работает".
-                    </p>
-                </div>
-                
-                <div class="content-grid">
-                    <div class="lesson-card" data-lesson="1">
-                        <div class="lesson-icon text">
-                            <i class="fas fa-film"></i>
-                        </div>
-                        <div class="lesson-content">
-                            <div class="lesson-number">01</div>
-                            <h3>Reels + Stories</h3>
-                            <p class="lesson-subtitle">Использование обоих форматов</p>
-                        </div>
-                        <div class="lesson-action">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </div>
-
-                    <div class="lesson-card" data-lesson="2">
-                        <div class="lesson-icon text">
-                            <i class="fas fa-paperclip"></i>
-                        </div>
-                        <div class="lesson-content">
-                            <div class="lesson-number">02</div>
-                            <h3>Закрепление видео</h3>
-                            <p class="lesson-subtitle">Закрепляйте лучшие видео в профиле</p>
-                        </div>
-                        <div class="lesson-action">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </div>
-
-                    <div class="lesson-card" data-lesson="3">
-                        <div class="lesson-icon text">
-                            <i class="fas fa-hand-pointer"></i>
-                        </div>
-                        <div class="lesson-content">
-                            <div class="lesson-number">03</div>
-                            <h3>Призыв к действию (CTA)</h3>
-                            <p class="lesson-subtitle">Примеры эффективных CTA</p>
-                        </div>
-                        <div class="lesson-action">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="btn-next-stage" id="nextStage7">
-                    <span>YouTube Shorts — инструкции и примеры</span>
-                    <i class="fas fa-arrow-right"></i>
-                    <div class="btn-shine"></div>
-                </button>
-            </div>
-
-            <!-- Stage 8: YouTube Shorts — инструкции и примеры -->
-            <div class="stage-screen" id="stage8-main">
-                <div class="stage-header">
-                    <div class="stage-badge">YOUTUBE</div>
-                    <h2 class="stage-title">YouTube Shorts — инструкции и примеры</h2>
-                    <p class="stage-description">
-                        Заголовок должен усиливать интригу. Описание — короткое, с намёком на выгоду. 
-                        Регулярность важнее качества. Один удачный Short может приносить трафик месяцами.
-                    </p>
-                </div>
-                
-                <div class="content-grid">
-                    <div class="lesson-card" data-lesson="1">
-                        <div class="lesson-icon text">
-                            <i class="fas fa-heading"></i>
-                        </div>
-                        <div class="lesson-content">
-                            <div class="lesson-number">01</div>
-                            <h3>Заголовок</h3>
-                            <p class="lesson-subtitle">Должен усиливать интригу</p>
-                        </div>
-                        <div class="lesson-action">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </div>
-
-                    <div class="lesson-card" data-lesson="2">
-                        <div class="lesson-icon text">
-                            <i class="fas fa-align-left"></i>
-                        </div>
-                        <div class="lesson-content">
-                            <div class="lesson-number">02</div>
-                            <h3>Описание</h3>
-                            <p class="lesson-subtitle">Короткое, с намёком на выгоду</p>
-                        </div>
-                        <div class="lesson-action">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </div>
-
-                    <div class="lesson-card" data-lesson="3">
-                        <div class="lesson-icon text">
-                            <i class="fas fa-calendar-check"></i>
-                        </div>
-                        <div class="lesson-content">
-                            <div class="lesson-number">03</div>
-                            <h3>Регулярность</h3>
-                            <p class="lesson-subtitle">Важнее качества</p>
-                        </div>
-                        <div class="lesson-action">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="btn-next-stage" id="nextStage8">
-                    <span>Советы для роста дохода</span>
-                    <i class="fas fa-arrow-right"></i>
-                    <div class="btn-shine"></div>
-                </button>
-            </div>
-
-            <!-- Stage 9: Советы для роста дохода -->
-            <div class="stage-screen" id="stage9-main">
-                <div class="stage-header">
-                    <div class="stage-badge">СОВЕТЫ</div>
-                    <h2 class="stage-title">Советы для роста дохода</h2>
-                    <p class="stage-description">
-                        Анализируйте статистику и географию аудитории. Тестируйте разные форматы контента. 
-                        Масштабируйтесь: создавайте несколько аккаунтов. Перезаливайте удачные видео. 
-                        Работайте системно, а не хаотично.
-                    </p>
-                </div>
-                
-                <div class="content-grid">
-                    <div class="lesson-card" data-lesson="1">
-                        <div class="lesson-icon text">
-                            <i class="fas fa-chart-bar"></i>
-                        </div>
-                        <div class="lesson-content">
-                            <div class="lesson-number">01</div>
-                            <h3>Анализ статистики</h3>
-                            <p class="lesson-subtitle">Смотрите аналитику и регионы зрителей</p>
-                        </div>
-                        <div class="lesson-action">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </div>
-
-                    <div class="lesson-card" data-lesson="2">
-                        <div class="lesson-icon text">
-                            <i class="fas fa-flask"></i>
-                        </div>
-                        <div class="lesson-content">
-                            <div class="lesson-number">02</div>
-                            <h3>Тестирование форматов</h3>
-                            <p class="lesson-subtitle">Изучайте какой контент лучше заходит</p>
-                        </div>
-                        <div class="lesson-action">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </div>
-
-                    <div class="lesson-card" data-lesson="3">
-                        <div class="lesson-icon text">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="lesson-content">
-                            <div class="lesson-number">03</div>
-                            <h3>Масштабирование</h3>
-                            <p class="lesson-subtitle">Создавайте несколько аккаунтов</p>
-                        </div>
-                        <div class="lesson-action">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </div>
-
-                    <div class="lesson-card" data-lesson="4">
-                        <div class="lesson-icon text">
-                            <i class="fas fa-redo"></i>
-                        </div>
-                        <div class="lesson-content">
-                            <div class="lesson-number">04</div>
-                            <h3>Перезалив удачных видео</h3>
-                            <p class="lesson-subtitle">Повторно используйте успешный контент</p>
-                        </div>
-                        <div class="lesson-action">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="btn-next-stage" id="nextStage9">
-                    <span>Завершить обучение</span>
-                    <i class="fas fa-graduation-cap"></i>
-                    <div class="btn-shine"></div>
-                </button>
-            </div>
-
-            <!-- Lesson Detail Screens -->
-            <div class="lesson-detail-screen" id="lessonDetail">
-                <div class="lesson-header">
-                    <div class="lesson-type-badge" id="lessonTypeBadge">
-                        <i class="fas fa-headphones"></i>
-                        <span>АУДИО</span>
-                    </div>
-                    <h2 class="lesson-title" id="lessonTitle">Название урока</h2>
-                    <p class="lesson-description" id="lessonDescription">Описание урока</p>
-                </div>
-
-                <div class="lesson-content-area">
-                    <!-- Audio Player -->
-                    <div class="audio-player" id="audioPlayerContainer">
-                        <div class="audio-wave">
-                            <div class="wave-bar"></div>
-                            <div class="wave-bar"></div>
-                            <div class="wave-bar"></div>
-                            <div class="wave-bar"></div>
-                            <div class="wave-bar"></div>
-                        </div>
-                        <div class="audio-controls">
-                            <button class="audio-btn" id="playPauseBtn">
-                                <i class="fas fa-play"></i>
-                            </button>
-                            <div class="audio-progress">
-                                <div class="progress-bar">
-                                    <div class="progress-fill"></div>
+                        <div class="platform-card combined" data-platform="instagram-threads">
+                            <div class="platform-icons-combined">
+                                <div class="platform-icon-small">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                                    </svg>
                                 </div>
-                                <div class="audio-time">
-                                    <span class="current-time">0:00</span>
-                                    <span class="duration">0:00</span>
+                                <div class="platform-icon-small">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                                        <line x1="9" y1="10" x2="15" y2="10"/>
+                                        <line x1="9" y1="14" x2="15" y2="14"/>
+                                    </svg>
                                 </div>
                             </div>
-                            <button class="audio-btn" id="volumeBtn">
-                                <i class="fas fa-volume-up"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Video Player -->
-                    <div class="video-player" id="videoPlayerContainer">
-                        <div class="video-placeholder">
-                            <i class="fas fa-play-circle"></i>
-                            <p>Нажмите для воспроизведения видео</p>
-                        </div>
-                    </div>
-
-                    <!-- Text Content -->
-                    <div class="text-content" id="textContentContainer">
-                        <div class="text-scroll">
-                            <!-- Контент будет загружен динамически -->
+                            <div class="platform-names">
+                                <h3>Instagram Reels</h3>
+                                <h3>Threads</h3>
+                            </div>
+                            <p>Стабильный заработок</p>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="lesson-footer">
-                    <button class="btn-back-lesson">
-                        <i class="fas fa-chevron-left"></i>
-                        <span>Назад к урокам</span>
+            <!-- Слайд 4: Преимущества -->
+            <div class="slide" data-slide="4">
+                <div class="slide-content">
+                    <div class="slide-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <h2 class="slide-title">Почему это работает?</h2>
+                    <div class="benefits-list">
+                        <div class="benefit-item">
+                            <div class="benefit-check">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                </svg>
+                            </div>
+                            <div class="benefit-text">
+                                <strong>Быстрый старт</strong> - первые деньги сразу же после реферальной цепи
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-check">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                </svg>
+                            </div>
+                            <div class="benefit-text">
+                                <strong>Простота</strong> - нужен только смартфон
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-check">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                </svg>
+                            </div>
+                            <div class="benefit-text">
+                                <strong>Готовые шаблоны</strong> - не нужно придумывать с нуля 
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-check">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                </svg>
+                            </div>
+                            <div class="benefit-text">
+                                <strong>Масштабируемость</strong> - один раз научился, зарабатывай постоянно 
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-check">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                </svg>
+                            </div>
+                            <div class="benefit-text">
+                                <strong>Проверено</strong> - полностью отработанная система 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="money-animation">
+                        <div class="money-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.91s4.18 1.39 4.18 3.91c-.01 1.83-1.38 2.83-3.12 3.16z"/>
+                            </svg>
+                        </div>
+                        <div class="money-text">Реальный доход от первого дня</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Слайд 5: Финальный -->
+            <div class="slide" data-slide="5">
+                <div class="slide-content final-slide">
+                    <div class="slide-icon large">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+                            <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                            <line x1="9" y1="9" x2="9.01" y2="9"/>
+                            <line x1="15" y1="9" x2="15.01" y2="9"/>
+                            <path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>
+                            <path d="M5.64 5.64l2.83 2.83M15.53 15.53l2.83 2.83M5.64 18.36l2.83-2.83M15.53 8.47l2.83-2.83"/>
+                        </svg>
+                    </div>
+                    <h2 class="slide-title">Готов начать?</h2>
+                    <p class="slide-text">
+                        Ты узнал всё необходимое для старта. Теперь осталось только начать!
+                    </p>
+                    <div class="final-stats">
+                        <div class="final-stat">
+                            <div class="final-stat-number">1000+</div>
+                            <div class="final-stat-label">$ в месяц</div>
+                        </div>
+                        <div class="final-stat">
+                            <div class="final-stat-number">100+</div>
+                            <div class="final-stat-label">Реферальных цепей</div>
+                        </div>
+                        <div class="final-stat">
+                            <div class="final-stat-number">1</div>
+                            <div class="final-stat-label">Шаг до первых денег</div>
+                        </div>
+                    </div>
+                    <button class="final-cta-button pulse" id="getAccessBtn">
+                        <span>Получить доступ</span>
+                        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none">
+                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
                     </button>
-                    <div class="lesson-navigation">
-                        <button class="nav-btn prev-lesson">
-                            <i class="fas fa-arrow-left"></i>
-                        </button>
-                        <span class="nav-info" id="navInfo">1/8</span>
-                        <button class="nav-btn next-lesson">
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
+                    <div class="guarantee-text">
+                        <span class="guarantee-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                        </span>
+                        Гарантия результата даже если у вас один реферал 
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Completion Screen -->
-            <div class="completion-screen" id="completionScreen">
-                <div class="completion-content">
-                    <div class="completion-animation">
-                        <div class="confetti"></div>
-                        <div class="confetti"></div>
-                        <div class="confetti"></div>
-                        <div class="confetti"></div>
-                        <div class="confetti"></div>
-                        <div class="confetti"></div>
-                        <div class="completion-icon">
-                            <i class="fas fa-trophy"></i>
-                        </div>
-                    </div>
-                    <h2 class="completion-title">Миссия выполнена!</h2>
-                    <p class="completion-text">
-                        Ты прошёл все 9 слайдов обучения. Теперь ты готов начать зарабатывать на коротких видео 
-                        с помощью iGaming-платформы Drazze и твоей реферальной ссылки.
-                    </p>
-                    
-                    <div class="completion-stats">
-                        <div class="completion-stat">
-                            <div class="stat-value">9</div>
-                            <div class="stat-label">слайдов пройдено</div>
-                        </div>
-                        <div class="completion-stat">
-                            <div class="stat-value">3</div>
-                            <div class="stat-label">платформы изучено</div>
-                        </div>
-                        <div class="completion-stat">
-                            <div class="stat-value">100%</div>
-                            <div class="stat-label">готовность</div>
-                        </div>
-                    </div>
-
-                    <div class="completion-badges">
-                        <div class="badge">
-                            <i class="fab fa-tiktok"></i>
-                            <span>TikTok</span>
-                        </div>
-                        <div class="badge">
-                            <i class="fab fa-youtube"></i>
-                            <span>YouTube</span>
-                        </div>
-                        <div class="badge">
-                            <i class="fab fa-instagram"></i>
-                            <span>Instagram</span>
-                        </div>
-                        <div class="badge completed-badge">
-                            <i class="fas fa-rocket"></i>
-                            <span>Готов!</span>
-                        </div>
-                    </div>
-
-                    <div class="completion-actions">
-                        <button class="btn-start-earning" id="startEarningBtn">
-                            <i class="fas fa-rocket"></i>
-                            <span>Начать зарабатывать</span>
-                        </button>
-                        <button class="btn-review" id="reviewBtn">
-                            <i class="fas fa-redo"></i>
-                            <span>Повторить обучение</span>
-                        </button>
-                    </div>
-                    <p style="color: var(--gray-light); margin-top: 1.5rem; font-size: 0.9rem; text-align: center;">
-                        Эта модель уже работает и масштабируется.<br>
-                        Мы даём вам платформу, инструменты и понимание системы.<br>
-                        Дальше всё зависит от вашей активности и дисциплины.<br>
-                        🚀 Желаем удачи и высоких результатов!
-                    </p>
-                </div>
-            </div>
-        </main>
-
-        <!-- Audio Element -->
-        <audio id="audioElement" preload="metadata">
-            <source src="" type="audio/mpeg">
-        </audio>
+        <!-- Навигация -->
+        <div class="navigation">
+            <button class="nav-button prev" id="prevBtn" disabled>
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Назад
+            </button>
+            <button class="nav-button next" id="nextBtn">
+                Далее
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+        </div>
     </div>
 
-    <!-- Scripts -->
     <script src="script.js"></script>
 </body>
 </html>
